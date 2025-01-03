@@ -7,7 +7,7 @@ import smtplib
 import schedule
 import time
 
-# Initialize text-to-speech engine
+
 engine = pyttsx3.init()
 
 def speak(text):
@@ -50,7 +50,7 @@ def search_web(query):
 
 def fetch_weather(city):
     """Function to fetch weather information."""
-    api_key = "your_openweathermap_api_key"  # Replace with your OpenWeatherMap API key
+    api_key = "your_openweathermap_api_key"  
     base_url = "http://api.openweathermap.org/data/2.5/weather"
     params = {"q": city, "appid": api_key, "units": "metric"}
     response = requests.get(base_url, params=params)
@@ -64,8 +64,8 @@ def fetch_weather(city):
 
 def send_email(to_email, subject, body):
     """Function to send an email."""
-    sender_email = "your_email@gmail.com"  # Replace with your email
-    sender_password = "your_password"      # Replace with your password
+    sender_email = "your_email@gmail.com" 
+    sender_password = "your_password"      
     try:
         with smtplib.SMTP("smtp.gmail.com", 587) as server:
             server.starttls()
@@ -83,7 +83,7 @@ def set_reminder(task, reminder_time):
     schedule.every().day.at(reminder_time).do(remind)
     speak(f"Reminder set for {reminder_time}.")
 
-# Main function
+
 def main():
     speak("Hello! How can I assist you today?")
     while True:
@@ -102,7 +102,7 @@ def main():
             fetch_weather(city)
         elif "email" in command:
             speak("Who is the recipient?")
-            recipient = input("Enter recipient email: ")  # Temporarily use input for email
+            recipient = input("Enter recipient email: ")  
             speak("What is the subject?")
             subject = listen()
             speak("What is the message?")
@@ -112,7 +112,7 @@ def main():
             speak("What is the reminder?")
             task = listen()
             speak("At what time? Please specify in HH:MM format.")
-            reminder_time = input("Enter time (HH:MM): ")  # Temporarily use input for time
+            reminder_time = input("Enter time (HH:MM): ") 
             set_reminder(task, reminder_time)
         elif "exit" in command or "bye" in command:
             speak("Goodbye!")
